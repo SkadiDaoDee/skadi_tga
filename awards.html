@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>年度颁奖</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header><h1>年度颁奖</h1></header>
+
+<nav class="nav">
+  <a href="index.html">首页</a>
+  <a href="games.html">游戏</a>
+  <a href="anime.html">动漫</a>
+  <a href="movies.html">影视</a>
+  <a href="books.html">书籍</a>
+  <a href="awards.html" class="active">年度颁奖</a>
+  <!-- 当前在颁奖页，颁奖链接高亮 -->
+</nav>
+
+<h2>我的年度颁奖</h2>
+<div id="award-list"></div>
+<!-- 颁奖卡片会塞进这个容器 -->
+
+<footer>持续更新中</footer>
+
+<script src="data.js"></script>
+<script>
+  const container = document.getElementById('award-list');
+
+  if (awards.length === 0) {
+    // 这里用 awards 数组
+    container.innerHTML = '<div class="empty-tip">年度颁奖尚未公布。</div>';
+  } else {
+    awards.forEach(item => {
+      // 颁奖卡片的结构和作品卡片不同，用的是 .award-card 样式
+      container.innerHTML += `
+        <div class="award-card">
+          <div class="award-year">${item.year} 年度</div>
+          <div class="award-cat">${item.category}</div>
+          <div class="award-winner">🏅 ${item.winner}</div>
+          <div class="award-reason">${item.reason}</div>
+        </div>`;
+    });
+  }
+</script>
+
+</body>
+</html>
