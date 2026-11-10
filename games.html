@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>游戏记录</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- 引入公共样式 -->
+</head>
+<body>
+
+<header><h1>游戏记录</h1></header>
+
+<nav class="nav">
+  <a href="index.html">首页</a>
+  <a href="games.html" class="active">游戏</a>
+  <!-- 当前在游戏页，所以游戏链接加 active 高亮 -->
+  <a href="anime.html">动漫</a>
+  <a href="movies.html">影视</a>
+  <a href="books.html">书籍</a>
+  <a href="awards.html">年度颁奖</a>
+</nav>
+
+<h2>玩过的游戏</h2>
+
+<!-- 这个 div 是空容器，下面的 JavaScript 会把游戏卡片塞进去 -->
+<div class="card-grid" id="game-list"></div>
+
+<footer>持续更新中</footer>
+
+<!-- 先引入 data.js，这样下面的脚本才能读到 games 数组 -->
+<script src="data.js"></script>
+<script>
+  // 找到页面上 id 为 game-list 的容器
+  const container = document.getElementById('game-list');
+
+  // 如果 games 数组是空的（length === 0），显示空状态提示
+  if (games.length === 0) {
+    container.innerHTML = '<div class="empty-tip">暂无游戏记录，后续更新。</div>';
+  } else {
+    // 如果数组里有数据，就循环每一条，生成一张卡片
+    games.forEach(item => {
+      // 用模板字符串把 item 里的字段拼成 HTML
+      container.innerHTML += `
+        <div class="card">
+          <img src="${item.cover}" alt="${item.title}">
+          <!-- ${item.cover} 会被替换成封面图路径 -->
+          <div class="card-body">
+            <div class="card-title">${item.title}</div>
+            <div class="card-meta">${item.year}</div>
+            <div class="card-rating">${item.rating}</div>
+            <div class="card-review">${item.review}</div>
+          </div>
+        </div>`;
+    });
+  }
+</script>
+
+</body>
+</html>
