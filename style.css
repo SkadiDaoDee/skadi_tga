@@ -1,0 +1,142 @@
+/* ============================================
+   style.css —— 全站公共样式
+   这个文件控制所有页面的外观：字体、颜色、卡片、导航等。
+   你不需要每个页面重复写样式，改这里就能全站生效。
+   ============================================ */
+
+/* body 是整个页面的主体，这里设置字体、最大宽度、背景色 */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; /* 系统默认字体，干净好读 */
+  max-width: 900px;        /* 内容最宽 900px，太宽了不好看 */
+  margin: 0 auto;          /* 左右自动居中 */
+  padding: 20px;           /* 页面四周留一点空白 */
+  line-height: 1.6;        /* 行高，让文字不挤在一起 */
+  background: #fafafa;     /* 浅灰背景 */
+  color: #333;             /* 正文颜色，深灰 */
+}
+
+/* header 是页面顶部的标题区域 */
+header { text-align: center; padding: 30px 0 10px; }
+header h1 { margin: 0; }   /* h1 是页面大标题 */
+header p { color: #666; }  /* 标题下面的小字说明 */
+
+/* .nav 是导航栏，包含首页、游戏、动漫等链接 */
+.nav {
+  display: flex;           /* 用 flex 布局让链接横向排列 */
+  gap: 10px;               /* 链接之间的间距 */
+  flex-wrap: wrap;         /* 屏幕窄的时候自动换行 */
+  justify-content: center; /* 整体居中 */
+  margin: 20px 0 30px;
+}
+
+/* 导航栏里的每一个链接 */
+.nav a {
+  text-decoration: none;   /* 去掉下划线 */
+  color: #555;
+  background: #fff;        /* 白色背景 */
+  padding: 8px 16px;       /* 内边距，让链接像个按钮 */
+  border-radius: 20px;     /* 圆角 */
+  border: 1px solid #ddd;
+}
+
+/* 鼠标悬停，或者当前所在页面的链接（加 active 类） */
+.nav a:hover, .nav a.active {
+  background: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+/* h2 是每个分类页里的小标题，比如“玩过的游戏” */
+h2 {
+  border-left: 4px solid #333; /* 左边一条竖线装饰 */
+  padding-left: 12px;
+  margin-top: 40px;
+}
+
+/* .card-grid 是卡片容器，用网格布局自动排列卡片 */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* 每张卡片至少 260px，自动换行 */
+  gap: 16px;               /* 卡片之间的间距 */
+}
+
+/* .card 是单个作品卡片 */
+.card {
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  overflow: hidden;        /* 让图片圆角不溢出 */
+  display: flex;
+  flex-direction: column;  /* 图片在上，文字在下 */
+}
+
+/* 卡片里的封面图 */
+.card img {
+  width: 100%;
+  height: 160px;           /* 固定高度，避免图片大小不一 */
+  object-fit: cover;       /* 图片裁剪填充，不变形 */
+  background: #eee;        /* 图片没加载出来时显示灰底 */
+}
+
+/* 卡片里的文字区域 */
+.card-body { padding: 14px; flex: 1; display: flex; flex-direction: column; }
+.card-title { font-weight: bold; font-size: 1.05em; }  /* 作品名 */
+.card-meta { color: #888; font-size: 0.85em; margin: 4px 0; } /* 年份等 */
+.card-rating { color: #f5a623; margin-bottom: 6px; }  /* 评分，橙色 */
+.card-review { color: #555; font-size: 0.9em; flex: 1; } /* 短评 */
+
+/* 年度颁奖卡片，金色调 */
+.award-card {
+  background: #fff8e6;
+  border: 1px solid #f5d78e;
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 14px;
+}
+.award-card .award-year { color: #b8860b; font-weight: bold; }
+.award-card .award-cat { font-size: 1.2em; margin: 4px 0; }
+.award-card .award-winner { font-size: 1.1em; font-weight: bold; }
+.award-card .award-reason { color: #666; font-size: 0.9em; margin-top: 4px; }
+
+/* 空状态提示：当某个分类还没有内容时显示 */
+.empty-tip {
+  color: #aaa;
+  text-align: center;
+  padding: 40px 0;
+  border: 1px dashed #ddd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* 页脚 */
+footer {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.85em;
+  padding: 40px 0 20px;
+  border-top: 1px solid #eee;
+  margin-top: 40px;
+}
+
+/* 首页的自我介绍区域 */
+.home-intro { text-align: center; padding: 20px 0 10px; }
+.home-intro p { color: #666; }
+
+/* 首页的分类入口大按钮 */
+.cat-links {
+  display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+  margin: 30px 0;
+}
+.cat-links a {
+  display: block;
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  padding: 24px 32px;
+  text-decoration: none;
+  color: #333;
+  text-align: center;
+  font-size: 1.1em;
+  min-width: 120px;
+}
+.cat-links a:hover { border-color: #333; }
