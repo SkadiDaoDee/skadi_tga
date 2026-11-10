@@ -1,1 +1,55 @@
 
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动漫记录</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header><h1>动漫记录</h1></header>
+
+<nav class="nav">
+  <a href="index.html">首页</a>
+  <a href="games.html">游戏</a>
+  <a href="anime.html" class="active">动漫</a>
+  <!-- 当前在动漫页，所以动漫链接高亮 -->
+  <a href="movies.html">影视</a>
+  <a href="books.html">书籍</a>
+  <a href="awards.html">年度颁奖</a>
+</nav>
+
+<h2>看过的动漫</h2>
+<div class="card-grid" id="anime-list"></div>
+<!-- 注意容器 id 改成了 anime-list，避免和游戏页冲突 -->
+
+<footer>持续更新中</footer>
+
+<script src="data.js"></script>
+<script>
+  const container = document.getElementById('anime-list'); // 这里也要改成 anime-list
+
+  if (anime.length === 0) {
+    // 注意这里用的是 anime 数组，不是 games
+    container.innerHTML = '<div class="empty-tip">暂无动漫记录，后续更新。</div>';
+  } else {
+    anime.forEach(item => {
+      // 循环 anime 数组
+      container.innerHTML += `
+        <div class="card">
+          <img src="${item.cover}" alt="${item.title}">
+          <div class="card-body">
+            <div class="card-title">${item.title}</div>
+            <div class="card-meta">${item.year}</div>
+            <div class="card-rating">${item.rating}</div>
+            <div class="card-review">${item.review}</div>
+          </div>
+        </div>`;
+    });
+  }
+</script>
+
+</body>
+</html>
