@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>影视记录</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header><h1>影视记录</h1></header>
+
+<nav class="nav">
+  <a href="index.html">首页</a>
+  <a href="games.html">游戏</a>
+  <a href="anime.html">动漫</a>
+  <a href="movies.html" class="active">影视</a>
+  <!-- 当前在影视页，影视链接高亮 -->
+  <a href="books.html">书籍</a>
+  <a href="awards.html">年度颁奖</a>
+</nav>
+
+<h2>看过的影视</h2>
+<div class="card-grid" id="movie-list"></div>
+<!-- 容器 id 是 movie-list -->
+
+<footer>持续更新中</footer>
+
+<script src="data.js"></script>
+<script>
+  const container = document.getElementById('movie-list');
+
+  if (movies.length === 0) {
+    // 这里用 movies 数组
+    container.innerHTML = '<div class="empty-tip">暂无影视记录，后续更新。</div>';
+  } else {
+    movies.forEach(item => {
+      container.innerHTML += `
+        <div class="card">
+          <img src="${item.cover}" alt="${item.title}">
+          <div class="card-body">
+            <div class="card-title">${item.title}</div>
+            <div class="card-meta">${item.year}</div>
+            <div class="card-rating">${item.rating}</div>
+            <div class="card-review">${item.review}</div>
+          </div>
+        </div>`;
+    });
+  }
+</script>
+
+</body>
+</html>
